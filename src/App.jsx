@@ -16,9 +16,11 @@ import Departments from "@/components/pages/Departments";
 import EmployeeDetail from "@/components/pages/EmployeeDetail";
 import EmployeeFormPage from "@/components/pages/EmployeeFormPage";
 import EmployeeList from "@/components/pages/EmployeeList";
+import StudentList from "@/components/pages/StudentList";
+import StudentFormPage from "@/components/pages/StudentFormPage";
+import StudentDetail from "@/components/pages/StudentDetail";
 import Button from "@/components/atoms/Button";
 import Sidebar from "@/components/organisms/Sidebar";
-
 // Create auth context
 export const AuthContext = createContext(null);
 
@@ -194,7 +196,7 @@ function App() {
                 </div>
               </div>
             </div>
-            <Routes>
+<Routes>
               <Route 
                 path="/" 
                 element={<Dashboard onMenuClick={handleMenuClick} />} 
@@ -214,6 +216,22 @@ function App() {
               <Route 
                 path="/employees/:id/edit" 
                 element={<EmployeeFormPage onMenuClick={handleMenuClick} />} 
+              />
+              <Route 
+                path="/students" 
+                element={<StudentList onMenuClick={handleMenuClick} />} 
+              />
+              <Route 
+                path="/students/new" 
+                element={<StudentFormPage onMenuClick={handleMenuClick} />} 
+              />
+              <Route 
+                path="/students/:id" 
+                element={<StudentDetail onMenuClick={handleMenuClick} />} 
+              />
+              <Route 
+                path="/students/:id/edit" 
+                element={<StudentFormPage onMenuClick={handleMenuClick} />} 
               />
               <Route 
                 path="/departments" 

@@ -6,9 +6,10 @@ import { cn } from "@/utils/cn";
 const Sidebar = ({ isOpen, onClose }) => {
   const location = useLocation();
 
-  const navigation = [
+const navigation = [
     { name: "Dashboard", href: "/", icon: "LayoutDashboard" },
     { name: "Employees", href: "/employees", icon: "Users" },
+    { name: "Students", href: "/students", icon: "GraduationCap" },
     { name: "Departments", href: "/departments", icon: "Building2" },
     { name: "Reports", href: "/reports", icon: "FileBarChart" }
   ];
