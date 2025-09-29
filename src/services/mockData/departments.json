@@ -1,0 +1,51 @@
+[
+  {
+    "Id": 1,
+    "name": "Engineering",
+    "description": "Responsible for software development, system architecture, and technical innovation. Our engineering team builds and maintains the core products and platforms.",
+    "manager": "Sarah Wilson",
+    "employeeCount": 3
+  },
+  {
+    "Id": 2,
+    "name": "Design",
+    "description": "Creates user experiences and visual designs for all products. The design team focuses on user research, interface design, and brand consistency.",
+    "manager": "Lisa Rodriguez",
+    "employeeCount": 2
+  },
+  {
+    "Id": 3,
+    "name": "Marketing",
+    "description": "Drives brand awareness, customer acquisition, and market expansion. The marketing team handles campaigns, content creation, and market analysis.",
+    "manager": "Jennifer Adams",
+    "employeeCount": 2
+  },
+  {
+    "Id": 4,
+    "name": "Sales",
+    "description": "Manages customer relationships and revenue generation. The sales team focuses on lead conversion, account management, and business development.",
+    "manager": "Amanda Taylor",
+    "employeeCount": 2
+  },
+  {
+    "Id": 5,
+    "name": "Human Resources",
+    "description": "Handles employee relations, recruitment, and organizational development. HR ensures compliance, manages benefits, and supports employee growth.",
+    "manager": "Patricia Davis",
+    "employeeCount": 2
+  },
+  {
+    "Id": 6,
+    "name": "Finance",
+    "description": "Manages financial planning, budgeting, and reporting. The finance team ensures fiscal responsibility and provides strategic financial guidance.",
+    "manager": "Karen White",
+    "employeeCount": 2
+  },
+  {
+    "Id": 7,
+    "name": "Operations",
+    "description": "Oversees day-to-day business operations and process optimization. Operations ensures efficient workflows and operational excellence.",
+    "manager": "",
+    "employeeCount": 1
+  }
+]
