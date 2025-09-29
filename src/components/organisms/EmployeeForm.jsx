@@ -154,97 +154,99 @@ const EmployeeForm = ({ employee, onSave, onCancel }) => {
             </p>
         </div>
     </div>
-<form onSubmit={handleSubmit} className="space-y-6 max-h-[calc(100vh-200px)] overflow-y-auto pr-2">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <FormField
-                label="First Name"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                error={errors.firstName}
-                required />
-            <FormField
-                label="Last Name"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                error={errors.lastName}
-                required />
-            <FormField
-                label="Email"
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                error={errors.email}
-                required />
-            <FormField
-                label="Phone"
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                error={errors.phone} />
-            <FormField
-                label="Department"
-                type="select"
-                name="department"
-                value={formData.department}
-                onChange={handleChange}
-                options={departmentOptions}
-                error={errors.department}
-                required />
-            <FormField
-                label="Role"
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                error={errors.role}
-                required />
-            <FormField
-                label="Start Date"
-                type="date"
-                name="startDate"
-                value={formData.startDate}
-                onChange={handleChange}
-                error={errors.startDate}
-                required />
-            <FormField
-                label="Status"
-                type="select"
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-                options={statusOptions}
-                error={errors.status}
-                required />
-            <FormField
-                label="Salary"
-                type="number"
-                name="salary"
-                value={formData.salary}
-                onChange={handleChange}
-                error={errors.salary}
-                required />
-            <FormField
-                label="Manager"
-                type="select"
-                name="manager"
-                value={formData.manager}
-                onChange={handleChange}
-                options={managerOptions}
-                error={errors.manager} />
+<form onSubmit={handleSubmit} className="flex flex-col h-[calc(100vh-200px)]">
+        <div className="flex-1 overflow-y-auto pr-2 space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <FormField
+                    label="First Name"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
+                    error={errors.firstName}
+                    required />
+                <FormField
+                    label="Last Name"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
+                    error={errors.lastName}
+                    required />
+                <FormField
+                    label="Email"
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    error={errors.email}
+                    required />
+                <FormField
+                    label="Phone"
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    error={errors.phone} />
+                <FormField
+                    label="Department"
+                    type="select"
+                    name="department"
+                    value={formData.department}
+                    onChange={handleChange}
+                    options={departmentOptions}
+                    error={errors.department}
+                    required />
+                <FormField
+                    label="Role"
+                    name="role"
+                    value={formData.role}
+                    onChange={handleChange}
+                    error={errors.role}
+                    required />
+                <FormField
+                    label="Start Date"
+                    type="date"
+                    name="startDate"
+                    value={formData.startDate}
+                    onChange={handleChange}
+                    error={errors.startDate}
+                    required />
+                <FormField
+                    label="Status"
+                    type="select"
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                    options={statusOptions}
+                    error={errors.status}
+                    required />
+                <FormField
+                    label="Salary"
+                    type="number"
+                    name="salary"
+                    value={formData.salary}
+                    onChange={handleChange}
+                    error={errors.salary}
+                    required />
+                <FormField
+                    label="Manager"
+                    type="select"
+                    name="manager"
+                    value={formData.manager}
+                    onChange={handleChange}
+                    options={managerOptions}
+                    error={errors.manager} />
+            </div>
+        </div>
+        {/* Action Buttons - Sticky Footer */}
+        <div className="flex-shrink-0 flex items-center justify-end space-x-3 pt-6 border-t border-slate-200 mt-6 bg-white">
+            <Button type="button" variant="secondary" onClick={onCancel} disabled={loading}>
+                Cancel
+            </Button>
+            <Button type="submit" disabled={loading}>
+                {loading ? "Saving..." : employee ? "Update Employee" : "Create Employee"}
+            </Button>
         </div>
     </form>
-    {/* Action Buttons */}
-    <div
-        className="flex items-center justify-end space-x-3 pt-6 border-t border-slate-200 mt-6">
-        <Button type="button" variant="secondary" onClick={onCancel} disabled={loading}>Cancel
-                      </Button>
-        <Button type="button" onClick={handleSubmit} disabled={loading}>
-            {loading ? "Saving..." : employee ? "Update Employee" : "Create Employee"}
-        </Button>
-    </div>
 </div>
   );
 };
