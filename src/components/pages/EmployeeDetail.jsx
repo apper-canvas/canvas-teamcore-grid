@@ -100,7 +100,7 @@ const EmployeeDetail = ({ onMenuClick }) => {
         </div>
       </Header>
 
-      <main className="flex-1 overflow-y-auto p-4 lg:p-6">
+<main className="flex-1 h-[calc(100vh-4rem)] overflow-y-auto scroll-smooth scrollbar-thin scrollbar-thumb-slate-300 scrollbar-track-slate-100 p-4 lg:p-6">
         <div className="max-w-4xl mx-auto space-y-6">
           {/* Employee Header */}
           <div className="bg-white rounded-lg border border-slate-200 shadow-card p-6">
