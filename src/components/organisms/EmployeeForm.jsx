@@ -141,20 +141,26 @@ const departmentOptions = departments.map(dept => ({
     }));
 
   return (
-    <div className="bg-white rounded-lg shadow-card p-6">
-    <div className="flex items-center space-x-4 mb-6">
-        <EmployeeAvatar employee={formData} size="lg" />
-        <div>
+<div className="bg-white rounded-lg shadow-card h-full flex flex-col">
+      {/* Header Section */}
+      <div className="flex-shrink-0 p-6 border-b border-slate-200">
+        <div className="flex items-center space-x-4">
+          <EmployeeAvatar employee={formData} size="lg" />
+          <div>
             <h2 className="text-2xl font-bold text-slate-900">
-                {employee ? "Edit Employee" : "Add New Employee"}
+              {employee ? "Edit Employee" : "Add New Employee"}
             </h2>
             <p className="text-slate-500">
-                {employee ? "Update employee information" : "Create a new employee record"}
+              {employee ? "Update employee information" : "Create a new employee record"}
             </p>
+          </div>
         </div>
-    </div>
-<form onSubmit={handleSubmit} className="flex flex-col">
-        <div className="space-y-6 mb-6">
+      </div>
+
+      <form onSubmit={handleSubmit} className="flex flex-col h-full">
+        {/* Scrollable Content Area */}
+        <div className="flex-1 overflow-y-auto p-6">
+          <div className="space-y-6">
 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <FormField
@@ -261,16 +267,18 @@ const departmentOptions = departments.map(dept => ({
                     error={errors.manager_c}
                   />
                 </div>
-            </div>
+</div>
+          </div>
         </div>
-        {/* Action Buttons - Sticky Footer */}
-        <div className="flex-shrink-0 flex items-center justify-end space-x-3 pt-6 border-t border-slate-200 mt-6 bg-white">
-            <Button type="button" variant="secondary" onClick={onCancel} disabled={loading}>
-                Cancel
-            </Button>
-            <Button type="submit" disabled={loading}>
-                {loading ? "Saving..." : employee ? "Update Employee" : "Create Employee"}
-            </Button>
+
+        {/* Sticky Action Buttons Footer */}
+        <div className="flex-shrink-0 flex items-center justify-end space-x-3 p-6 border-t border-slate-200 bg-white">
+          <Button type="button" variant="secondary" onClick={onCancel} disabled={loading}>
+            Cancel
+          </Button>
+          <Button type="submit" disabled={loading}>
+            {loading ? "Saving..." : employee ? "Update Employee" : "Create Employee"}
+          </Button>
         </div>
     </form>
 </div>
