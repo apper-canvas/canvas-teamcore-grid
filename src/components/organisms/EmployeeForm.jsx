@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import Button from "@/components/atoms/Button";
-import FormField from "@/components/molecules/FormField";
-import EmployeeAvatar from "@/components/molecules/EmployeeAvatar";
+import React, { useEffect, useState } from "react";
 import { employeeService } from "@/services/api/employeeService";
 import { departmentService } from "@/services/api/departmentService";
 import { toast } from "react-toastify";
+import Button from "@/components/atoms/Button";
+import EmployeeAvatar from "@/components/molecules/EmployeeAvatar";
+import FormField from "@/components/molecules/FormField";
 
 const EmployeeForm = ({ employee, onSave, onCancel }) => {
   const [formData, setFormData] = useState({
@@ -143,137 +143,109 @@ const EmployeeForm = ({ employee, onSave, onCancel }) => {
 
   return (
     <div className="bg-white rounded-lg shadow-card p-6">
-      <div className="flex items-center space-x-4 mb-6">
+    <div className="flex items-center space-x-4 mb-6">
         <EmployeeAvatar employee={formData} size="lg" />
         <div>
-          <h2 className="text-2xl font-bold text-slate-900">
-            {employee ? "Edit Employee" : "Add New Employee"}
-          </h2>
-          <p className="text-slate-500">
-            {employee ? "Update employee information" : "Create a new employee record"}
-          </p>
+            <h2 className="text-2xl font-bold text-slate-900">
+                {employee ? "Edit Employee" : "Add New Employee"}
+            </h2>
+            <p className="text-slate-500">
+                {employee ? "Update employee information" : "Create a new employee record"}
+            </p>
         </div>
-      </div>
-
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <FormField
-            label="First Name"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            error={errors.firstName}
-            required
-          />
-
-          <FormField
-            label="Last Name"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            error={errors.lastName}
-            required
-          />
-
-          <FormField
-            label="Email"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            error={errors.email}
-            required
-          />
-
-          <FormField
-            label="Phone"
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            error={errors.phone}
-          />
-
-          <FormField
-            label="Department"
-            type="select"
-            name="department"
-            value={formData.department}
-            onChange={handleChange}
-            options={departmentOptions}
-            error={errors.department}
-            required
-          />
-
-          <FormField
-            label="Role"
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            error={errors.role}
-            required
-          />
-
-          <FormField
-            label="Start Date"
-            type="date"
-            name="startDate"
-            value={formData.startDate}
-            onChange={handleChange}
-            error={errors.startDate}
-            required
-          />
-
-          <FormField
-            label="Status"
-            type="select"
-            name="status"
-            value={formData.status}
-            onChange={handleChange}
-            options={statusOptions}
-            error={errors.status}
-            required
-          />
-
-          <FormField
-            label="Salary"
-            type="number"
-            name="salary"
-            value={formData.salary}
-            onChange={handleChange}
-            error={errors.salary}
-            required
-          />
-
-          <FormField
-            label="Manager"
-            type="select"
-            name="manager"
-            value={formData.manager}
-            onChange={handleChange}
-            options={managerOptions}
-            error={errors.manager}
-          />
-        </div>
-
-        <div className="flex items-center justify-end space-x-3 pt-6 border-t border-slate-200">
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={onCancel}
-            disabled={loading}
-          >
-            Cancel
-          </Button>
-          <Button
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "Saving..." : (employee ? "Update Employee" : "Create Employee")}
-          </Button>
-        </div>
-      </form>
     </div>
+    <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <FormField
+                label="First Name"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                error={errors.firstName}
+                required />
+            <FormField
+                label="Last Name"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                error={errors.lastName}
+                required />
+            <FormField
+                label="Email"
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                error={errors.email}
+                required />
+            <FormField
+                label="Phone"
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                error={errors.phone} />
+            <FormField
+                label="Department"
+                type="select"
+                name="department"
+                value={formData.department}
+                onChange={handleChange}
+                options={departmentOptions}
+                error={errors.department}
+                required />
+            <FormField
+                label="Role"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                error={errors.role}
+                required />
+            <FormField
+                label="Start Date"
+                type="date"
+                name="startDate"
+                value={formData.startDate}
+                onChange={handleChange}
+                error={errors.startDate}
+                required />
+            <FormField
+                label="Status"
+                type="select"
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                options={statusOptions}
+                error={errors.status}
+                required />
+            <FormField
+                label="Salary"
+                type="number"
+                name="salary"
+                value={formData.salary}
+                onChange={handleChange}
+                error={errors.salary}
+                required />
+            <FormField
+                label="Manager"
+                type="select"
+                name="manager"
+                value={formData.manager}
+                onChange={handleChange}
+                options={managerOptions}
+                error={errors.manager} />
+        </div>
+    </form>
+    {/* Action Buttons */}
+    <div
+        className="flex items-center justify-end space-x-3 pt-6 border-t border-slate-200 mt-6">
+        <Button type="button" variant="secondary" onClick={onCancel} disabled={loading}>Cancel
+                      </Button>
+        <Button type="button" onClick={handleSubmit} disabled={loading}>
+            {loading ? "Saving..." : employee ? "Update Employee" : "Create Employee"}
+        </Button>
+    </div>
+</div>
   );
 };
 

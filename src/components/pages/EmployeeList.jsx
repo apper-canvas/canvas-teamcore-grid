@@ -231,8 +231,8 @@ const EmployeeList = ({ onMenuClick }) => {
             )}
           </div>
 
-          {/* Employee Table */}
-          {filteredEmployees.length === 0 && !loading ? (
+{/* Employee Table */}
+          {filteredEmployees.length === 0 ? (
             <Empty
               title="No employees found"
               description={searchQuery || departmentFilter || statusFilter ? 
