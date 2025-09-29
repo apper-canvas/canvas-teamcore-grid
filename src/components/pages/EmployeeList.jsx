@@ -53,37 +53,60 @@ const EmployeeList = ({ onMenuClick }) => {
     // Apply search filter
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(emp => 
-        emp.firstName.toLowerCase().includes(query) ||
-        emp.lastName.toLowerCase().includes(query) ||
-        emp.email.toLowerCase().includes(query) ||
-        emp.department.toLowerCase().includes(query) ||
-        emp.role.toLowerCase().includes(query)
+filtered = filtered.filter(emp => 
+        emp.first_name_c.toLowerCase().includes(query) ||
+        emp.last_name_c.toLowerCase().includes(query) ||
+        emp.email_c.toLowerCase().includes(query) ||
+        emp.department_c.toLowerCase().includes(query) ||
+        emp.role_c.toLowerCase().includes(query)
       );
     }
 
     // Apply department filter
-    if (departmentFilter) {
-      filtered = filtered.filter(emp => emp.department === departmentFilter);
+if (departmentFilter) {
+      filtered = filtered.filter(emp => emp.department_c === departmentFilter);
     }
 
     // Apply status filter
     if (statusFilter) {
-      filtered = filtered.filter(emp => emp.status === statusFilter);
+      filtered = filtered.filter(emp => emp.status_c === statusFilter);
     }
 
     // Apply sorting
-    filtered.sort((a, b) => {
-      let aVal = a[sortBy];
-      let bVal = b[sortBy];
+filtered.sort((a, b) => {
+      let aVal, bVal;
       
-      if (sortBy === "salary") {
-        aVal = Number(aVal) || 0;
-        bVal = Number(bVal) || 0;
+      // Map old sort keys to new field names
+      if (sortBy === "firstName") {
+        aVal = a.first_name_c;
+        bVal = b.first_name_c;
+      } else if (sortBy === "lastName") {
+        aVal = a.last_name_c;
+        bVal = b.last_name_c;
+      } else if (sortBy === "email") {
+        aVal = a.email_c;
+        bVal = b.email_c;
+      } else if (sortBy === "department") {
+        aVal = a.department_c;
+        bVal = b.department_c;
+      } else if (sortBy === "role") {
+        aVal = a.role_c;
+        bVal = b.role_c;
+      } else if (sortBy === "status") {
+        aVal = a.status_c;
+        bVal = b.status_c;
+      } else if (sortBy === "salary") {
+        aVal = Number(a.salary_c) || 0;
+        bVal = Number(b.salary_c) || 0;
       } else if (sortBy === "startDate") {
-        aVal = new Date(aVal);
-        bVal = new Date(bVal);
+        aVal = new Date(a.start_date_c);
+        bVal = new Date(b.start_date_c);
       } else {
+        aVal = a[sortBy];
+        bVal = b[sortBy];
+      }
+      
+      if (sortBy !== "salary" && sortBy !== "startDate") {
         aVal = String(aVal || "").toLowerCase();
         bVal = String(bVal || "").toLowerCase();
       }
@@ -104,8 +127,8 @@ const EmployeeList = ({ onMenuClick }) => {
     navigate(`/employees/${employee.Id}/edit`);
   };
 
-  const handleDeleteEmployee = async (employee) => {
-    if (window.confirm(`Are you sure you want to delete ${employee.firstName} ${employee.lastName}?`)) {
+const handleDeleteEmployee = async (employee) => {
+    if (window.confirm(`Are you sure you want to delete ${employee.first_name_c} ${employee.last_name_c}?`)) {
       try {
         await employeeService.delete(employee.Id);
         toast.success("Employee deleted successfully");
@@ -175,9 +198,9 @@ const EmployeeList = ({ onMenuClick }) => {
                   onChange={(e) => setDepartmentFilter(e.target.value)}
                 >
                   <option value="">All Departments</option>
-                  {departments.map(dept => (
-                    <option key={dept.Id} value={dept.name}>
-                      {dept.name}
+{departments.map(dept => (
+                    <option key={dept.Id} value={dept.name_c}>
+                      {dept.name_c}
                     </option>
                   ))}
                 </Select>

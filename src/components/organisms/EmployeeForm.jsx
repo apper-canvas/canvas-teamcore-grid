@@ -7,18 +7,18 @@ import EmployeeAvatar from "@/components/molecules/EmployeeAvatar";
 import FormField from "@/components/molecules/FormField";
 
 const EmployeeForm = ({ employee, onSave, onCancel }) => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    department: "",
-    role: "",
-    startDate: "",
-    status: "active",
-    salary: "",
-    manager: "",
-    avatar: ""
+const [formData, setFormData] = useState({
+    first_name_c: "",
+    last_name_c: "",
+    email_c: "",
+    phone_c: "",
+    department_c: "",
+    role_c: "",
+    start_date_c: "",
+    status_c: "active",
+    salary_c: "",
+    manager_c: "",
+    avatar_c: ""
   });
 
   const [departments, setDepartments] = useState([]);
@@ -35,18 +35,18 @@ const EmployeeForm = ({ employee, onSave, onCancel }) => {
 
   useEffect(() => {
     if (employee) {
-      setFormData({
-        firstName: employee.firstName || "",
-        lastName: employee.lastName || "",
-        email: employee.email || "",
-        phone: employee.phone || "",
-        department: employee.department || "",
-        role: employee.role || "",
-        startDate: employee.startDate ? employee.startDate.split('T')[0] : "",
-        status: employee.status || "active",
-        salary: employee.salary || "",
-        manager: employee.manager || "",
-        avatar: employee.avatar || ""
+setFormData({
+        first_name_c: employee.first_name_c || "",
+        last_name_c: employee.last_name_c || "",
+        email_c: employee.email_c || "",
+        phone_c: employee.phone_c || "",
+        department_c: employee.department_c || "",
+        role_c: employee.role_c || "",
+        start_date_c: employee.start_date_c ? employee.start_date_c.split('T')[0] : "",
+        status_c: employee.status_c || "active",
+        salary_c: employee.salary_c || "",
+        manager_c: employee.manager_c || "",
+        avatar_c: employee.avatar_c || ""
       });
     }
   }, [employee]);
@@ -70,15 +70,14 @@ const EmployeeForm = ({ employee, onSave, onCancel }) => {
   const validateForm = () => {
     const newErrors = {};
 
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email is invalid";
-    if (!formData.department) newErrors.department = "Department is required";
-    if (!formData.role.trim()) newErrors.role = "Role is required";
-    if (!formData.startDate) newErrors.startDate = "Start date is required";
-    if (!formData.salary || formData.salary <= 0) newErrors.salary = "Valid salary is required";
-
+if (!formData.first_name_c.trim()) newErrors.first_name_c = "First name is required";
+    if (!formData.last_name_c.trim()) newErrors.last_name_c = "Last name is required";
+    if (!formData.email_c.trim()) newErrors.email_c = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email_c)) newErrors.email_c = "Email is invalid";
+    if (!formData.department_c) newErrors.department_c = "Department is required";
+    if (!formData.role_c.trim()) newErrors.role_c = "Role is required";
+    if (!formData.start_date_c) newErrors.start_date_c = "Start date is required";
+    if (!formData.salary_c || formData.salary_c <= 0) newErrors.salary_c = "Valid salary is required";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -93,9 +92,9 @@ const EmployeeForm = ({ employee, onSave, onCancel }) => {
 
     setLoading(true);
     try {
-      const employeeData = {
+const employeeData = {
         ...formData,
-        salary: Number(formData.salary)
+        salary_c: Number(formData.salary_c)
       };
 
       if (employee) {
@@ -129,16 +128,16 @@ const EmployeeForm = ({ employee, onSave, onCancel }) => {
     }
   };
 
-  const departmentOptions = departments.map(dept => ({
-    value: dept.name,
-    label: dept.name
+const departmentOptions = departments.map(dept => ({
+    value: dept.name_c,
+    label: dept.name_c
   }));
 
   const managerOptions = employees
-    .filter(emp => emp.department === formData.department)
+    .filter(emp => emp.department_c === formData.department_c)
     .map(emp => ({
-      value: `${emp.firstName} ${emp.lastName}`,
-      label: `${emp.firstName} ${emp.lastName}`
+      value: `${emp.first_name_c} ${emp.last_name_c}`,
+      label: `${emp.first_name_c} ${emp.last_name_c}`
     }));
 
   return (
@@ -156,85 +155,112 @@ const EmployeeForm = ({ employee, onSave, onCancel }) => {
     </div>
 <form onSubmit={handleSubmit} className="flex flex-col h-[calc(100vh-200px)]">
         <div className="flex-1 overflow-y-auto pr-2 space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
+<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <FormField
                     label="First Name"
-                    name="firstName"
-                    value={formData.firstName}
+                    name="first_name_c"
+                    value={formData.first_name_c}
                     onChange={handleChange}
-                    error={errors.firstName}
-                    required />
-                <FormField
+                    error={errors.first_name_c}
+                  />
+                </div>
+                <div>
+                  <FormField
                     label="Last Name"
-                    name="lastName"
-                    value={formData.lastName}
+                    name="last_name_c"
+                    value={formData.last_name_c}
                     onChange={handleChange}
-                    error={errors.lastName}
-                    required />
-                <FormField
+                    error={errors.last_name_c}
+                  />
+                </div>
+                <div>
+                  <FormField
                     label="Email"
+                    name="email_c"
                     type="email"
-                    name="email"
-                    value={formData.email}
+                    value={formData.email_c}
                     onChange={handleChange}
-                    error={errors.email}
-                    required />
-                <FormField
+                    error={errors.email_c}
+                  />
+                </div>
+                <div>
+                  <FormField
                     label="Phone"
+                    name="phone_c"
                     type="tel"
-                    name="phone"
-                    value={formData.phone}
+                    value={formData.phone_c}
                     onChange={handleChange}
-                    error={errors.phone} />
-                <FormField
+                    error={errors.phone_c}
+                  />
+                </div>
+                <div>
+                  <FormField
                     label="Department"
+                    name="department_c"
                     type="select"
-                    name="department"
-                    value={formData.department}
+                    value={formData.department_c}
                     onChange={handleChange}
                     options={departmentOptions}
-                    error={errors.department}
-                    required />
-                <FormField
+                    error={errors.department_c}
+                  />
+                </div>
+                <div>
+                  <FormField
                     label="Role"
-                    name="role"
-                    value={formData.role}
+                    name="role_c"
+                    value={formData.role_c}
                     onChange={handleChange}
-                    error={errors.role}
-                    required />
-                <FormField
+                    error={errors.role_c}
+                  />
+                </div>
+                <div>
+                  <FormField
                     label="Start Date"
+                    name="start_date_c"
                     type="date"
-                    name="startDate"
-                    value={formData.startDate}
+                    value={formData.start_date_c}
                     onChange={handleChange}
-                    error={errors.startDate}
-                    required />
-                <FormField
+                    error={errors.start_date_c}
+                  />
+                </div>
+                <div>
+                  <FormField
                     label="Status"
+                    name="status_c"
                     type="select"
-                    name="status"
-                    value={formData.status}
+                    value={formData.status_c}
                     onChange={handleChange}
-                    options={statusOptions}
-                    error={errors.status}
-                    required />
-                <FormField
+                    options={[
+                      { value: "active", label: "Active" },
+                      { value: "inactive", label: "Inactive" },
+                      { value: "on_leave", label: "On Leave" },
+                      { value: "pending", label: "Pending" }
+                    ]}
+                    error={errors.status_c}
+                  />
+                </div>
+                <div>
+                  <FormField
                     label="Salary"
+                    name="salary_c"
                     type="number"
-                    name="salary"
-                    value={formData.salary}
+                    value={formData.salary_c}
                     onChange={handleChange}
-                    error={errors.salary}
-                    required />
-                <FormField
+                    error={errors.salary_c}
+                  />
+                </div>
+                <div>
+                  <FormField
                     label="Manager"
+                    name="manager_c"
                     type="select"
-                    name="manager"
-                    value={formData.manager}
+                    value={formData.manager_c}
                     onChange={handleChange}
                     options={managerOptions}
-                    error={errors.manager} />
+                    error={errors.manager_c}
+                  />
+                </div>
             </div>
         </div>
         {/* Action Buttons - Sticky Footer */}

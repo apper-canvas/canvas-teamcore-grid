@@ -35,7 +35,7 @@ const Dashboard = ({ onMenuClick }) => {
       setDepartments(departmentsData);
       
       // Get 5 most recent employees
-      const sorted = employeesData.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+const sorted = employeesData.sort((a, b) => new Date(b.start_date_c) - new Date(a.start_date_c));
       setRecentEmployees(sorted.slice(0, 5));
     } catch (err) {
       setError("Failed to load dashboard data");
@@ -71,9 +71,8 @@ const Dashboard = ({ onMenuClick }) => {
     }]
   };
 
-  const chartSeries = departments.map(dept => dept.employeeCount);
-  const chartLabels = departments.map(dept => dept.name);
-
+const chartSeries = departments.map(dept => dept.employee_count_c);
+  const chartLabels = departments.map(dept => dept.name_c);
   if (loading) return <Loading />;
 
   if (error) {
@@ -140,7 +139,7 @@ const Dashboard = ({ onMenuClick }) => {
               <div className="space-y-4">
                 {recentEmployees.map((employee) => (
                   <div
-                    key={employee.Id}
+key={employee.Id}
                     className="flex items-center justify-between py-3 border-b border-slate-100 last:border-0 cursor-pointer hover:bg-slate-50 -mx-3 px-3 rounded-lg transition-colors duration-150"
                     onClick={() => navigate(`/employees/${employee.Id}`)}
                   >
@@ -148,19 +147,19 @@ const Dashboard = ({ onMenuClick }) => {
                       <EmployeeAvatar employee={employee} size="sm" />
                       <div>
                         <p className="text-sm font-medium text-slate-900">
-                          {employee.firstName} {employee.lastName}
+                          {employee.first_name_c} {employee.last_name_c}
                         </p>
                         <p className="text-xs text-slate-500">
-                          {employee.role} • {employee.department}
+                          {employee.role_c} • {employee.department_c}
                         </p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">
-                      <StatusBadge status={employee.status} />
+                      <StatusBadge status={employee.status_c} />
                       <div className="text-right">
                         <p className="text-xs text-slate-500">Started</p>
                         <p className="text-xs font-medium text-slate-700">
-                          {formatDate(employee.startDate)}
+                          {formatDate(employee.start_date_c)}
                         </p>
                       </div>
                     </div>

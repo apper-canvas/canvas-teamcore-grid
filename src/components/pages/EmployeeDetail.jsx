@@ -105,24 +105,24 @@ const EmployeeDetail = ({ onMenuClick }) => {
           {/* Employee Header */}
           <div className="bg-white rounded-lg border border-slate-200 shadow-card p-6">
             <div className="flex items-center space-x-6">
-              <EmployeeAvatar employee={employee} size="xl" />
+<EmployeeAvatar employee={employee} size="xl" />
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-2">
                   <h1 className="text-3xl font-bold text-slate-900">
-                    {employee.firstName} {employee.lastName}
+                    {employee.first_name_c} {employee.last_name_c}
                   </h1>
-                  <StatusBadge status={employee.status} />
+                  <StatusBadge status={employee.status_c} />
                 </div>
-                <p className="text-lg text-slate-600 mb-1">{employee.role}</p>
-                <p className="text-slate-500">{employee.department}</p>
+                <p className="text-lg text-slate-600 mb-1">{employee.role_c}</p>
+                <p className="text-slate-500">{employee.department_c}</p>
                 <div className="flex items-center space-x-4 mt-4 text-sm text-slate-500">
                   <div className="flex items-center space-x-1">
                     <ApperIcon name="Calendar" className="h-4 w-4" />
-                    <span>Started {formatDate(employee.startDate)}</span>
+                    <span>Started {formatDate(employee.start_date_c)}</span>
                   </div>
                   <div className="flex items-center space-x-1">
                     <ApperIcon name="DollarSign" className="h-4 w-4" />
-                    <span>{formatSalary(employee.salary)}</span>
+                    <span>{formatSalary(employee.salary_c)}</span>
                   </div>
                 </div>
               </div>
@@ -158,7 +158,7 @@ const EmployeeDetail = ({ onMenuClick }) => {
                     <div className="space-y-3">
                       <div>
                         <label className="text-sm font-medium text-slate-600">Full Name</label>
-                        <p className="text-slate-900">{employee.firstName} {employee.lastName}</p>
+<p className="text-slate-900">{employee.first_name_c} {employee.last_name_c}</p>
                       </div>
                       <div>
                         <label className="text-sm font-medium text-slate-600">Employee ID</label>
@@ -167,7 +167,7 @@ const EmployeeDetail = ({ onMenuClick }) => {
                       <div>
                         <label className="text-sm font-medium text-slate-600">Status</label>
                         <div className="mt-1">
-                          <StatusBadge status={employee.status} />
+                          <StatusBadge status={employee.status_c} />
                         </div>
                       </div>
                     </div>
@@ -182,23 +182,23 @@ const EmployeeDetail = ({ onMenuClick }) => {
                     <div className="space-y-3">
                       <div>
                         <label className="text-sm font-medium text-slate-600">Department</label>
-                        <p className="text-slate-900">{employee.department}</p>
+<p className="text-slate-900">{employee.department_c}</p>
                       </div>
                       <div>
                         <label className="text-sm font-medium text-slate-600">Role</label>
-                        <p className="text-slate-900">{employee.role}</p>
+                        <p className="text-slate-900">{employee.role_c}</p>
                       </div>
                       <div>
                         <label className="text-sm font-medium text-slate-600">Manager</label>
-                        <p className="text-slate-900">{employee.manager || "Not assigned"}</p>
+                        <p className="text-slate-900">{employee.manager_c || "Not assigned"}</p>
                       </div>
                       <div>
                         <label className="text-sm font-medium text-slate-600">Start Date</label>
-                        <p className="text-slate-900">{formatDate(employee.startDate)}</p>
+                        <p className="text-slate-900">{formatDate(employee.start_date_c)}</p>
                       </div>
                       <div>
                         <label className="text-sm font-medium text-slate-600">Salary</label>
-                        <p className="text-slate-900 font-semibold">{formatSalary(employee.salary)}</p>
+                        <p className="text-slate-900 font-semibold">{formatSalary(employee.salary_c)}</p>
                       </div>
                     </div>
                   </div>
@@ -212,10 +212,10 @@ const EmployeeDetail = ({ onMenuClick }) => {
                     <div className="space-y-3">
                       <div>
                         <label className="text-sm font-medium text-slate-600">Email</label>
-                        <div className="flex items-center space-x-2">
-                          <p className="text-slate-900">{employee.email}</p>
+<div className="flex items-center space-x-2">
+                          <p className="text-slate-900">{employee.email_c}</p>
                           <button
-                            onClick={() => window.open(`mailto:${employee.email}`)}
+                            onClick={() => window.open(`mailto:${employee.email_c}`)}
                             className="text-primary hover:text-blue-700"
                           >
                             <ApperIcon name="ExternalLink" className="h-4 w-4" />
@@ -225,10 +225,10 @@ const EmployeeDetail = ({ onMenuClick }) => {
                       <div>
                         <label className="text-sm font-medium text-slate-600">Phone</label>
                         <div className="flex items-center space-x-2">
-                          <p className="text-slate-900">{formatPhone(employee.phone)}</p>
-                          {employee.phone && (
+                          <p className="text-slate-900">{formatPhone(employee.phone_c)}</p>
+                          {employee.phone_c && (
                             <button
-                              onClick={() => window.open(`tel:${employee.phone}`)}
+                              onClick={() => window.open(`tel:${employee.phone_c}`)}
                               className="text-primary hover:text-blue-700"
                             >
                               <ApperIcon name="ExternalLink" className="h-4 w-4" />
@@ -257,7 +257,7 @@ const EmployeeDetail = ({ onMenuClick }) => {
               </Button>
               <Button
                 variant="outline"
-                onClick={() => window.open(`mailto:${employee.email}`)}
+onClick={() => window.open(`mailto:${employee.email_c}`)}
                 className="justify-start"
               >
                 <ApperIcon name="Mail" className="h-4 w-4 mr-2" />

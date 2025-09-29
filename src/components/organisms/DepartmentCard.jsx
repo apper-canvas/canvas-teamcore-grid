@@ -46,20 +46,20 @@ const DepartmentCard = ({
       </div>
 
       <p className="text-slate-600 text-sm mb-4 line-clamp-3">
-        {department.description}
+{department.description_c}
       </p>
 
-      {department.manager && (
+      {department.manager_c && (
         <div className="flex items-center space-x-2 mb-4">
           <ApperIcon name="User" className="h-4 w-4 text-slate-400" />
-          <span className="text-sm text-slate-600">Manager: {department.manager}</span>
+          <span className="text-sm text-slate-600">Manager: {department.manager_c}</span>
         </div>
       )}
 
       <div className="flex items-center justify-between pt-4 border-t border-slate-100">
-        <div className="flex items-center space-x-2 text-slate-500 text-sm">
+        <div className="flex items-center space-x-2 text-sm text-slate-600">
           <ApperIcon name="Users" className="h-4 w-4" />
-          <span>{department.employeeCount} team members</span>
+          <span>{department.employee_count_c} team members</span>
         </div>
         
         <Button

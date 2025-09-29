@@ -3,7 +3,7 @@ import Badge from "@/components/atoms/Badge";
 
 const StatusBadge = ({ status }) => {
   const getStatusVariant = (status) => {
-    switch (status?.toLowerCase()) {
+switch (status?.toLowerCase()) {
       case "active":
         return "success";
       case "inactive":

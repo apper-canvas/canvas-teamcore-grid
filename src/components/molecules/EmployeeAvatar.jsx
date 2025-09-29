@@ -14,7 +14,7 @@ const EmployeeAvatar = ({
     xl: "h-24 w-24 text-2xl"
   };
 
-  const initials = getInitials(employee?.firstName, employee?.lastName);
+const initials = getInitials(employee?.first_name_c, employee?.last_name_c);
 
   return (
     <div className={cn(
@@ -22,10 +22,10 @@ const EmployeeAvatar = ({
       sizes[size],
       className
     )}>
-      {employee?.avatar ? (
+{employee?.avatar_c ? (
         <img
-          src={employee.avatar}
-          alt={`${employee.firstName} ${employee.lastName}`}
+          src={employee.avatar_c}
+          alt={`${employee.first_name_c} ${employee.last_name_c}`}
           className="w-full h-full rounded-full object-cover"
         />
       ) : (

@@ -52,14 +52,14 @@ const Reports = ({ onMenuClick }) => {
   const departmentChartOptions = {
     chart: { type: "bar", toolbar: { show: false } },
     colors: ["#2563eb"],
-    xaxis: { categories: departments.map(dept => dept.name) },
+xaxis: { categories: departments.map(dept => dept.name_c) },
     yaxis: { title: { text: "Number of Employees" } },
     title: { text: "Employees by Department", align: "center" }
   };
 
   const departmentChartSeries = [{
     name: "Employees",
-    data: departments.map(dept => dept.employeeCount)
+    data: departments.map(dept => dept.employee_count_c)
   }];
 
   const statusChartOptions = {
@@ -70,10 +70,10 @@ const Reports = ({ onMenuClick }) => {
   };
 
   const statusCounts = {
-    active: employees.filter(emp => emp.status === "active").length,
-    inactive: employees.filter(emp => emp.status === "inactive").length,
-    on_leave: employees.filter(emp => emp.status === "on_leave").length,
-    pending: employees.filter(emp => emp.status === "pending").length
+active: employees.filter(emp => emp.status_c === "active").length,
+    inactive: employees.filter(emp => emp.status_c === "inactive").length,
+    on_leave: employees.filter(emp => emp.status_c === "on_leave").length,
+    pending: employees.filter(emp => emp.status_c === "pending").length
   };
 
   const statusChartSeries = [
@@ -92,8 +92,8 @@ const Reports = ({ onMenuClick }) => {
   ];
 
   const salaryDistribution = salaryRanges.map(range => ({
-    ...range,
-    count: employees.filter(emp => emp.salary >= range.min && emp.salary < range.max).length
+...range,
+    count: employees.filter(emp => emp.salary_c >= range.min && emp.salary_c < range.max).length
   }));
 
   const salaryChartOptions = {
@@ -218,12 +218,12 @@ const Reports = ({ onMenuClick }) => {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {departments.map((dept) => (
-                      <div key={dept.Id} className="bg-slate-50 rounded-lg p-4">
-                        <h4 className="font-semibold text-slate-900 mb-2">{dept.name}</h4>
+<div key={dept.Id} className="bg-slate-50 rounded-lg p-4">
+                        <h4 className="font-semibold text-slate-900 mb-2">{dept.name_c}</h4>
                         <div className="space-y-1 text-sm text-slate-600">
-                          <p>Manager: {dept.manager || "Not assigned"}</p>
-                          <p>Employees: {dept.employeeCount}</p>
-                          <p className="text-xs">{dept.description}</p>
+                          <p>Manager: {dept.manager_c || "Not assigned"}</p>
+                          <p>Employees: {dept.employee_count_c}</p>
+                          <p className="text-xs">{dept.description_c}</p>
                         </div>
                       </div>
                     ))}
@@ -245,19 +245,19 @@ const Reports = ({ onMenuClick }) => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div className="bg-slate-50 rounded-lg p-4 text-center">
                       <div className="text-2xl font-bold text-slate-900 mb-1">
-                        {formatSalary(employees.reduce((sum, emp) => sum + emp.salary, 0) / employees.length)}
+{formatSalary(employees.reduce((sum, emp) => sum + emp.salary_c, 0) / employees.length)}
                       </div>
                       <div className="text-sm text-slate-600">Average Salary</div>
                     </div>
                     <div className="bg-slate-50 rounded-lg p-4 text-center">
                       <div className="text-2xl font-bold text-slate-900 mb-1">
-                        {formatSalary(Math.max(...employees.map(emp => emp.salary)))}
+                        {formatSalary(Math.max(...employees.map(emp => emp.salary_c)))}
                       </div>
                       <div className="text-sm text-slate-600">Highest Salary</div>
                     </div>
                     <div className="bg-slate-50 rounded-lg p-4 text-center">
                       <div className="text-2xl font-bold text-slate-900 mb-1">
-                        {formatSalary(Math.min(...employees.map(emp => emp.salary)))}
+                        {formatSalary(Math.min(...employees.map(emp => emp.salary_c)))}
                       </div>
                       <div className="text-sm text-slate-600">Lowest Salary</div>
                     </div>

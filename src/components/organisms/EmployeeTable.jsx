@@ -1,10 +1,10 @@
 import React from "react";
-import EmployeeAvatar from "@/components/molecules/EmployeeAvatar";
-import StatusBadge from "@/components/molecules/StatusBadge";
-import Button from "@/components/atoms/Button";
-import ApperIcon from "@/components/ApperIcon";
 import { formatDate, formatSalary } from "@/utils/formatters";
 import { cn } from "@/utils/cn";
+import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
+import EmployeeAvatar from "@/components/molecules/EmployeeAvatar";
+import StatusBadge from "@/components/molecules/StatusBadge";
 
 const EmployeeTable = ({ 
   employees, 
@@ -85,34 +85,34 @@ const EmployeeTable = ({
                 className="hover:bg-slate-50 transition-colors duration-150 cursor-pointer"
                 onClick={() => onEmployeeClick(employee)}
               >
-                <td className="px-6 py-4 whitespace-nowrap">
+<td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
                     <EmployeeAvatar employee={employee} size="sm" />
                     <div className="ml-4">
                       <div className="text-sm font-medium text-slate-900">
-                        {employee.firstName} {employee.lastName}
+                        {employee.first_name_c} {employee.last_name_c}
                       </div>
-                      <div className="text-sm text-slate-500">{employee.phone}</div>
+                      <div className="text-sm text-slate-500">{employee.phone_c}</div>
                     </div>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-slate-900">{employee.email}</div>
+                  <div className="text-sm text-slate-900">{employee.email_c}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-slate-900">{employee.department}</div>
+                  <div className="text-sm text-slate-900">{employee.department_c}</div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-slate-900">{employee.role}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <StatusBadge status={employee.status} />
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-slate-900">{formatDate(employee.startDate)}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-slate-900">{formatSalary(employee.salary)}</div>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-slate-900">{employee.role_c}</div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <StatusBadge status={employee.status_c} />
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-slate-900">{formatDate(employee.start_date_c)}</div>
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap">
+                <div className="text-sm text-slate-900">{formatSalary(employee.salary_c)}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                   <div className="flex items-center space-x-2" onClick={(e) => e.stopPropagation()}>

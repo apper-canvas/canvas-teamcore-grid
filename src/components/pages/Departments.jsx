@@ -27,11 +27,10 @@ const Departments = ({ onMenuClick }) => {
       ]);
       
       // Update employee counts for each department
-      const updatedDepartments = deptData.map(dept => ({
+const updatedDepartments = deptData.map(dept => ({
         ...dept,
-        employeeCount: empData.filter(emp => emp.department === dept.name).length
+        employeeCount: empData.filter(emp => emp.department_c === dept.name_c).length
       }));
-      
       setDepartments(updatedDepartments);
     } catch (err) {
       setError("Failed to load departments");
@@ -126,14 +125,14 @@ const Departments = ({ onMenuClick }) => {
                   <div className="text-sm text-slate-600">Total Departments</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-accent mb-1">
-                    {departments.reduce((sum, dept) => sum + dept.employeeCount, 0)}
+<div className="text-3xl font-bold text-accent mb-1">
+                    {departments.reduce((sum, dept) => sum + dept.employee_count_c, 0)}
                   </div>
                   <div className="text-sm text-slate-600">Total Employees</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-success mb-1">
-                    {Math.round(departments.reduce((sum, dept) => sum + dept.employeeCount, 0) / departments.length) || 0}
+                    {Math.round(departments.reduce((sum, dept) => sum + dept.employee_count_c, 0) / departments.length) || 0}
                   </div>
                   <div className="text-sm text-slate-600">Avg per Department</div>
                 </div>
