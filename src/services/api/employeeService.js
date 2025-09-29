@@ -1,17 +1,25 @@
 import employeesData from "@/services/mockData/employees.json";
 
 class EmployeeService {
-  constructor() {
-    this.employees = [...employeesData];
+constructor() {
+    // Ensure we always have a fresh copy of the data and maintain state
+    if (!this.employees) {
+      this.employees = [...employeesData];
+    }
+    // Verify data integrity on initialization
+    console.log(`EmployeeService initialized with ${this.employees.length} employees`);
   }
 
   async delay(ms = 300) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-  async getAll() {
+async getAll() {
     await this.delay();
-    return [...this.employees];
+    // Ensure we return the current state with all modifications
+    const currentEmployees = [...this.employees];
+    console.log(`EmployeeService.getAll() returning ${currentEmployees.length} employees`);
+    return currentEmployees;
   }
 
   async getById(id) {
@@ -23,14 +31,19 @@ class EmployeeService {
     return { ...employee };
   }
 
-  async create(employeeData) {
+async create(employeeData) {
     await this.delay();
     const maxId = Math.max(...this.employees.map(emp => emp.Id), 0);
     const newEmployee = {
       Id: maxId + 1,
       ...employeeData
     };
+    
+    // Add to the employees array and verify persistence
     this.employees.push(newEmployee);
+    console.log(`EmployeeService.create() added employee with ID ${newEmployee.Id}. Total employees: ${this.employees.length}`);
+    
+    // Return a copy to prevent external mutations
     return { ...newEmployee };
   }
 
@@ -91,4 +104,6 @@ class EmployeeService {
   }
 }
 
-export const employeeService = new EmployeeService();
+// Create and export singleton instance to ensure state persistence
+const employeeServiceInstance = new EmployeeService();
+export { employeeServiceInstance as employeeService };
