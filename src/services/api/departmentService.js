@@ -217,4 +217,3 @@ class DepartmentService {
 
 const departmentServiceInstance = new DepartmentService();
 export { departmentServiceInstance as departmentService };
-export const departmentService = new DepartmentService();
