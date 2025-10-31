@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import Header from "@/components/organisms/Header";
 import EmployeeTable from "@/components/organisms/EmployeeTable";
 import SearchBar from "@/components/molecules/SearchBar";
@@ -13,7 +13,7 @@ import { employeeService } from "@/services/api/employeeService";
 import { departmentService } from "@/services/api/departmentService";
 import { toast } from "react-toastify";
 
-const EmployeeList = ({ onMenuClick }) => {
+const EmployeeList = () => {
   const [employees, setEmployees] = useState([]);
   const [filteredEmployees, setFilteredEmployees] = useState([]);
   const [departments, setDepartments] = useState([]);
@@ -162,7 +162,7 @@ const handleDeleteEmployee = async (employee) => {
   if (error) {
     return (
       <div className="flex-1 overflow-hidden">
-        <Header title="Employees" onMenuClick={onMenuClick} />
+<Header title="Employees" />
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
           <Error message={error} onRetry={loadData} />
         </main>
@@ -172,7 +172,7 @@ const handleDeleteEmployee = async (employee) => {
 
   return (
     <div className="flex-1 overflow-hidden">
-      <Header title="Employees" onMenuClick={onMenuClick}>
+<Header title="Employees">
         <Button onClick={() => navigate("/employees/new")}>
           <ApperIcon name="Plus" className="h-4 w-4 mr-2" />
           Add Employee

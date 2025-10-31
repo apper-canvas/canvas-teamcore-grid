@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "@/components/organisms/Header";
-import DepartmentCard from "@/components/organisms/DepartmentCard";
-import Button from "@/components/atoms/Button";
-import ApperIcon from "@/components/ApperIcon";
-import Loading from "@/components/ui/Loading";
-import Error from "@/components/ui/Error";
-import Empty from "@/components/ui/Empty";
 import { departmentService } from "@/services/api/departmentService";
 import { employeeService } from "@/services/api/employeeService";
 import { toast } from "react-toastify";
+import ApperIcon from "@/components/ApperIcon";
+import Button from "@/components/atoms/Button";
+import DepartmentCard from "@/components/organisms/DepartmentCard";
+import Header from "@/components/organisms/Header";
+import Loading from "@/components/ui/Loading";
+import Error from "@/components/ui/Error";
+import Empty from "@/components/ui/Empty";
 
 const Departments = ({ onMenuClick }) => {
   const [departments, setDepartments] = useState([]);
@@ -27,7 +27,7 @@ const Departments = ({ onMenuClick }) => {
       ]);
       
       // Update employee counts for each department
-const updatedDepartments = deptData.map(dept => ({
+      const updatedDepartments = deptData.map(dept => ({
         ...dept,
         employeeCount: empData.filter(emp => emp.department_c === dept.name_c).length
       }));
@@ -123,16 +123,16 @@ const updatedDepartments = deptData.map(dept => ({
                     {departments.length}
                   </div>
                   <div className="text-sm text-slate-600">Total Departments</div>
-                </div>
+</div>
                 <div className="text-center">
-<div className="text-3xl font-bold text-accent mb-1">
-                    {departments.reduce((sum, dept) => sum + dept.employee_count_c, 0)}
+                  <div className="text-3xl font-bold text-accent mb-1">
+                    {departments.reduce((sum, dept) => sum + (dept.employeeCount || 0), 0)}
                   </div>
                   <div className="text-sm text-slate-600">Total Employees</div>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-success mb-1">
-                    {Math.round(departments.reduce((sum, dept) => sum + dept.employee_count_c, 0) / departments.length) || 0}
+                    {Math.round(departments.reduce((sum, dept) => sum + (dept.employeeCount || 0), 0) / departments.length) || 0}
                   </div>
                   <div className="text-sm text-slate-600">Avg per Department</div>
                 </div>

@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import Header from "@/components/organisms/Header";
-import Button from "@/components/atoms/Button";
-import Badge from "@/components/atoms/Badge";
+import React, { useEffect, useState } from "react";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import { studentService } from "@/services/api/studentService";
+import { toast } from "react-toastify";
 import ApperIcon from "@/components/ApperIcon";
+import Badge from "@/components/atoms/Badge";
+import Button from "@/components/atoms/Button";
+import Header from "@/components/organisms/Header";
 import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
-import { studentService } from "@/services/api/studentService";
 import { formatDate } from "@/utils/formatters";
-import { toast } from "react-toastify";
 
-const StudentDetail = ({ onMenuClick }) => {
-  const { id } = useParams();
+const StudentDetail = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
   const [student, setStudent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -52,7 +52,7 @@ const StudentDetail = ({ onMenuClick }) => {
     }
   };
 
-  const handleBack = () => {
+const handleBack = () => {
     navigate("/students");
   };
 
@@ -61,7 +61,7 @@ const StudentDetail = ({ onMenuClick }) => {
   if (error) {
     return (
       <div className="flex-1 overflow-hidden">
-        <Header title="Student Details" onMenuClick={onMenuClick} />
+        <Header title="Student Details" />
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
           <Error message={error} onRetry={loadStudent} />
         </main>
@@ -69,10 +69,10 @@ const StudentDetail = ({ onMenuClick }) => {
     );
   }
 
-  if (!student) {
+if (!student) {
     return (
       <div className="flex-1 overflow-hidden">
-        <Header title="Student Details" onMenuClick={onMenuClick} />
+        <Header title="Student Details" />
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
           <Error message="Student not found" onRetry={loadStudent} />
         </main>
@@ -80,9 +80,9 @@ const StudentDetail = ({ onMenuClick }) => {
     );
   }
 
-  return (
+return (
     <div className="flex-1 overflow-hidden">
-      <Header title="Student Details" onMenuClick={onMenuClick}>
+      <Header title="Student Details">
         <div className="flex items-center space-x-3">
           <Button variant="secondary" onClick={handleBack}>
             <ApperIcon name="ArrowLeft" className="h-4 w-4 mr-2" />

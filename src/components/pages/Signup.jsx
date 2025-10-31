@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../App';
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import { useAuth } from "@/layouts/Root";
 
 function Signup() {
-  const { isInitialized } = useContext(AuthContext);
+const { isInitialized } = useAuth();
   
   useEffect(() => {
     if (isInitialized) {

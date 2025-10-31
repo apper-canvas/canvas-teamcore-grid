@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 import Header from "@/components/organisms/Header";
 import StudentTable from "@/components/organisms/StudentTable";
 import SearchBar from "@/components/molecules/SearchBar";
@@ -12,7 +12,7 @@ import Empty from "@/components/ui/Empty";
 import { studentService } from "@/services/api/studentService";
 import { toast } from "react-toastify";
 
-const StudentList = ({ onMenuClick }) => {
+const StudentList = () => {
   const [students, setStudents] = useState([]);
   const [filteredStudents, setFilteredStudents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -138,7 +138,7 @@ const StudentList = ({ onMenuClick }) => {
   if (error) {
     return (
       <div className="flex-1 overflow-hidden">
-        <Header title="Students" onMenuClick={onMenuClick} />
+<Header title="Students" />
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
           <Error message={error} onRetry={loadData} />
         </main>
@@ -148,7 +148,7 @@ const StudentList = ({ onMenuClick }) => {
 
   return (
     <div className="flex-1 overflow-hidden">
-      <Header title="Students" onMenuClick={onMenuClick}>
+<Header title="Students">
         <Button onClick={() => navigate("/students/new")}>
           <ApperIcon name="Plus" className="h-4 w-4 mr-2" />
           Add Student

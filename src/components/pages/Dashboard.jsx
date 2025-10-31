@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useOutletContext } from "react-router-dom";
 import Header from "@/components/organisms/Header";
 import StatsCards from "@/components/organisms/StatsCards";
 import Button from "@/components/atoms/Button";
@@ -13,7 +14,7 @@ import { formatDate } from "@/utils/formatters";
 import { useNavigate } from "react-router-dom";
 import Chart from "react-apexcharts";
 
-const Dashboard = ({ onMenuClick }) => {
+const Dashboard = () => {
   const [stats, setStats] = useState({});
   const [recentEmployees, setRecentEmployees] = useState([]);
   const [departments, setDepartments] = useState([]);
@@ -81,7 +82,7 @@ const chartSeries = departments.map(dept => dept.employee_count_c);
 
   return (
     <div className="flex-1 overflow-hidden">
-      <Header title="Dashboard" onMenuClick={onMenuClick}>
+<Header title="Dashboard">
         <Button onClick={() => navigate("/employees/new")}>
           <ApperIcon name="Plus" className="h-4 w-4 mr-2" />
           Add Employee
