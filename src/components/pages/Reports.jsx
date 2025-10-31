@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
 import Header from "@/components/organisms/Header";
 import Button from "@/components/atoms/Button";
 import Badge from "@/components/atoms/Badge";
@@ -11,7 +10,7 @@ import { departmentService } from "@/services/api/departmentService";
 import { formatDate, formatSalary } from "@/utils/formatters";
 import Chart from "react-apexcharts";
 
-const Reports = () => {
+const Reports = ({ onMenuClick }) => {
   const [employees, setEmployees] = useState([]);
   const [departments, setDepartments] = useState([]);
   const [stats, setStats] = useState({});
@@ -115,7 +114,7 @@ active: employees.filter(emp => emp.status_c === "active").length,
   if (error) {
     return (
       <div className="flex-1 overflow-hidden">
-<Header title="Reports" />
+        <Header title="Reports" onMenuClick={onMenuClick} />
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
           <Error message={error} onRetry={loadData} />
         </main>
@@ -125,7 +124,7 @@ active: employees.filter(emp => emp.status_c === "active").length,
 
   return (
     <div className="flex-1 overflow-hidden">
-<Header title="Reports">
+      <Header title="Reports" onMenuClick={onMenuClick}>
         <Button onClick={() => window.print()}>
           <ApperIcon name="Printer" className="h-4 w-4 mr-2" />
           Print Report

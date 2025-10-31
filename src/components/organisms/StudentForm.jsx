@@ -5,13 +5,12 @@ import Button from "@/components/atoms/Button";
 import FormField from "@/components/molecules/FormField";
 
 const StudentForm = ({ student, onSave, onCancel }) => {
-const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
     first_name_c: "",
     last_name_c: "",
     email_c: "",
     date_of_birth_c: "",
     grade_level_c: "",
-    science_marks_c: "",
     Tags: ""
   });
 
@@ -21,18 +20,17 @@ const [formData, setFormData] = useState({
   useEffect(() => {
     if (student) {
       setFormData({
-first_name_c: student.first_name_c || "",
+        first_name_c: student.first_name_c || "",
         last_name_c: student.last_name_c || "",
         email_c: student.email_c || "",
         date_of_birth_c: student.date_of_birth_c ? student.date_of_birth_c.split('T')[0] : "",
         grade_level_c: student.grade_level_c || "",
-        science_marks_c: student.science_marks_c || "",
         Tags: student.Tags || ""
       });
     }
   }, [student]);
 
-const validateForm = () => {
+  const validateForm = () => {
     const newErrors = {};
 
     if (!formData.first_name_c.trim()) newErrors.first_name_c = "First name is required";
@@ -41,9 +39,6 @@ const validateForm = () => {
     else if (!/\S+@\S+\.\S+/.test(formData.email_c)) newErrors.email_c = "Email is invalid";
     if (!formData.grade_level_c || formData.grade_level_c < 1 || formData.grade_level_c > 12) {
       newErrors.grade_level_c = "Valid grade level (1-12) is required";
-    }
-    if (formData.science_marks_c && (formData.science_marks_c < 0 || formData.science_marks_c > 100)) {
-      newErrors.science_marks_c = "Science marks must be between 0 and 100";
     }
 
     setErrors(newErrors);
@@ -60,10 +55,9 @@ const validateForm = () => {
 
     setLoading(true);
     try {
-const studentData = {
+      const studentData = {
         ...formData,
-        grade_level_c: Number(formData.grade_level_c),
-        science_marks_c: formData.science_marks_c ? Number(formData.science_marks_c) : undefined
+        grade_level_c: Number(formData.grade_level_c)
       };
 
       if (student) {
@@ -174,19 +168,6 @@ const studentData = {
                 onChange={handleChange}
                 error={errors.grade_level_c}
                 required
-              />
-            </div>
-<div>
-              <FormField
-                label="Science Marks"
-                name="science_marks_c"
-                type="number"
-                value={formData.science_marks_c}
-                onChange={handleChange}
-                error={errors.science_marks_c}
-                placeholder="Enter marks (0-100)"
-                min="0"
-                max="100"
               />
             </div>
             <div>

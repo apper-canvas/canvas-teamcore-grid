@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, useNavigate, useOutletContext } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "@/components/organisms/Header";
 import EmployeeForm from "@/components/organisms/EmployeeForm";
@@ -7,7 +7,7 @@ import Loading from "@/components/ui/Loading";
 import Error from "@/components/ui/Error";
 import { employeeService } from "@/services/api/employeeService";
 
-const EmployeeFormPage = () => {
+const EmployeeFormPage = ({ onMenuClick }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [employee, setEmployee] = useState(null);
@@ -47,8 +47,9 @@ const EmployeeFormPage = () => {
   if (error) {
     return (
       <div className="flex-1 overflow-hidden">
-<Header 
+        <Header 
           title={isEditing ? "Edit Employee" : "Add Employee"} 
+          onMenuClick={onMenuClick} 
         />
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
           <Error message={error} onRetry={isEditing ? loadEmployee : undefined} />
@@ -60,8 +61,10 @@ const EmployeeFormPage = () => {
   return (
     <div className="flex-1 overflow-hidden">
       <Header 
-title={isEditing ? "Edit Employee" : "Add Employee"} 
+        title={isEditing ? "Edit Employee" : "Add Employee"} 
+        onMenuClick={onMenuClick} 
       />
+
 <main className="flex-1 h-full overflow-hidden p-4 lg:p-6">
         <div className="max-w-4xl mx-auto h-full">
           <EmployeeForm

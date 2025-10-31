@@ -1,18 +1,16 @@
 import React from "react";
-import { useOutletContext } from "react-router-dom";
-import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
+import ApperIcon from "@/components/ApperIcon";
 
-const Header = ({ title, children }) => {
-  const { handleMenuClick } = useOutletContext();
+const Header = ({ title, onMenuClick, children }) => {
   return (
     <header className="bg-white border-b border-slate-200 px-4 lg:px-6 py-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-<Button
+          <Button
             variant="ghost"
             size="sm"
-            onClick={handleMenuClick}
+            onClick={onMenuClick}
             className="mr-3 lg:hidden"
           >
             <ApperIcon name="Menu" className="h-5 w-5" />

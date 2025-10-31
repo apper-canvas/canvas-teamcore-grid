@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate, useOutletContext } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Header from "@/components/organisms/Header";
 import Button from "@/components/atoms/Button";
 import Badge from "@/components/atoms/Badge";
@@ -12,7 +12,7 @@ import { employeeService } from "@/services/api/employeeService";
 import { formatDate, formatSalary, formatPhone } from "@/utils/formatters";
 import { toast } from "react-toastify";
 
-const EmployeeDetail = () => {
+const EmployeeDetail = ({ onMenuClick }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [employee, setEmployee] = useState(null);
@@ -60,7 +60,7 @@ const EmployeeDetail = () => {
   if (error) {
     return (
       <div className="flex-1 overflow-hidden">
-<Header title="Employee Details" />
+        <Header title="Employee Details" onMenuClick={onMenuClick} />
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
           <Error message={error} onRetry={loadEmployee} />
         </main>
@@ -71,7 +71,7 @@ const EmployeeDetail = () => {
   if (!employee) {
     return (
       <div className="flex-1 overflow-hidden">
-<Header title="Employee Details" />
+        <Header title="Employee Details" onMenuClick={onMenuClick} />
         <main className="flex-1 overflow-y-auto p-4 lg:p-6">
           <Error message="Employee not found" />
         </main>
@@ -81,7 +81,7 @@ const EmployeeDetail = () => {
 
   return (
     <div className="flex-1 overflow-hidden">
-<Header title="Employee Details">
+      <Header title="Employee Details" onMenuClick={onMenuClick}>
         <div className="flex items-center space-x-3">
           <Button
             variant="outline"
